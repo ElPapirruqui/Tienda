@@ -1,19 +1,15 @@
-#include<iostream>
+#include<memory>
+#include<string>
 #include<cstdlib>
+#include "View/View.h"
 
 using namespace std;
 
 int main()
 {
-
-    cout << "Bienvenido al campo de entrenamiento soldado bla bla bla...\n" << endl;
-    cout << "¿Que desea hacer?" << endl;
-    cout << "(Seleccionar opcion)\n" << endl;
-    cout << "1 - Recoger arma" << endl;
-    cout << "2 - Dejar arma" << endl;
-    cout << "3 - Disparar" << endl;
-    cout << "4 - Ver arma en uso" << endl;
-    cout << "0 - Salir" << endl;
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+    View View;
+    View.RenderApp();
 
     return 0;
 }

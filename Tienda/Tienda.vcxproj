@@ -140,6 +140,49 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Menus\CotizarMenu.cpp" />
+    <ClCompile Include="Menus\MainMenu.cpp" />
+    <ClCompile Include="Menus\IMenu.cpp" />
+    <ClCompile Include="Menus\HistorialMenu.cpp" />
+    <ClCompile Include="Menus\StepsMenu.cpp" />
+    <ClCompile Include="Prendas\Camisa.cpp" />
+    <ClCompile Include="Prendas\Decorators\Chupin.cpp" />
+    <ClCompile Include="Prendas\Decorators\CuelloMao.cpp" />
+    <ClCompile Include="Prendas\Decorators\MangaCorta.cpp" />
+    <ClCompile Include="Prendas\Decorators\Premium.cpp" />
+    <ClCompile Include="Prendas\Decorators\PrendaDecorator.cpp" />
+    <ClCompile Include="Prendas\EPrendaType.cpp" />
+    <ClCompile Include="Prendas\Pantalon.cpp" />
+    <ClCompile Include="Prendas\IPrenda.cpp" />
+    <ClCompile Include="Prendas\PrendaFactory.cpp" />
+    <ClCompile Include="Presenter\Presenter.cpp" />
+    <ClCompile Include="Store\History.cpp" />
+    <ClCompile Include="Store\Store.cpp" />
+    <ClCompile Include="Store\Vendedor.cpp" />
+    <ClCompile Include="View\View.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Menus\CotizarMenu.h" />
+    <ClInclude Include="Menus\HistorialMenu.h" />
+    <ClInclude Include="Menus\IMenu.h" />
+    <ClInclude Include="Menus\MainMenu.h" />
+    <ClInclude Include="Menus\StepsMenu.h" />
+    <ClInclude Include="Prendas\Camisa.h" />
+    <ClInclude Include="Prendas\Decorators\Chupin.h" />
+    <ClInclude Include="Prendas\Decorators\CuelloMao.h" />
+    <ClInclude Include="Prendas\Decorators\MangaCorta.h" />
+    <ClInclude Include="Prendas\Decorators\Premium.h" />
+    <ClInclude Include="Prendas\Decorators\PrendaDecorator.h" />
+    <ClInclude Include="Prendas\EPrendaType.h" />
+    <ClInclude Include="Prendas\IPrenda.h" />
+    <ClInclude Include="Prendas\Pantalon.h" />
+    <ClInclude Include="Prendas\PrendaFactory.h" />
+    <ClInclude Include="Prendas\SPrendaChoice.h" />
+    <ClInclude Include="Presenter\Presenter.h" />
+    <ClInclude Include="Store\History.h" />
+    <ClInclude Include="Store\Store.h" />
+    <ClInclude Include="Store\Vendedor.h" />
+    <ClInclude Include="View\View.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
