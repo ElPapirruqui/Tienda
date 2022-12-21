@@ -10,21 +10,34 @@ IMenu::IMenu(View* NewAppView):AppView(NewAppView) {
 }
 
 IMenu::~IMenu() {
+	Close();
 	cout << "IMenu Destructor" << endl;
 }
 
 void IMenu::ShowMenu() {
     while (!QuitMenu)
     {
+		if (AppView == nullptr) return;
         std::system("CLS");
+		if (!ErrorMessage.empty()) {
+			Break();
+			PrintRow();
+			PrintText("ERROR: " + ErrorMessage);
+			PrintRow();
+			Break();
+			ErrorMessage = "";
+		}
 		ShowMenuBody();
         GetInput();
         ProcessInput();
     }
 }
 
-void IMenu::PrintText(string Text) {
-	cout << Text << endl;
+void IMenu::PrintText(string Text, bool bIsEndOfLine) {
+	cout << Text;
+	if (bIsEndOfLine) {
+		cout << endl;
+	}
 }
 
 void IMenu::Break() {
@@ -49,15 +62,15 @@ void IMenu::ProcessInput() {
 }
 
 void IMenu::OpenMenu(EMenu NewMenu) {
-	AppView->RenderMenu(NewMenu);
 	MenuOption = 0;
+	AppView->RenderMenu(NewMenu);
 }
 
 void IMenu::SetNewPrenda(EPrendaType NewPrendaType) {
-	AppView->SetNewPrenda(NewPrendaType);
 	MenuOption = 0;
+	AppView->SetNewPrenda(NewPrendaType);
 }
 
-void IMenu::Exit() {
+void IMenu::Close() {
 	QuitMenu = true;
 }

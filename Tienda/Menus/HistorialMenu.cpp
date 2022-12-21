@@ -1,14 +1,22 @@
 #include<iostream>
 #include "../View/View.h"
 #include "HistorialMenu.h"
+#include <iomanip>
 
 using namespace std;
 
-HistorialMenu::HistorialMenu(View* NewAppView):IMenu(NewAppView) {
-}
+HistorialMenu::HistorialMenu(View* NewAppView):IMenu(NewAppView){}
 
 HistorialMenu::~HistorialMenu() {
     cout << "HistorialMenu Destructor" << endl;
+}
+
+void HistorialMenu::SetHistoryData(SHistoryData& NewHistoryData) {
+    HistoryData = &NewHistoryData;
+}
+
+void HistorialMenu::SetHistoryData(vector<SHistoryData>& NewHistoryData) {
+    HistoryDataVector = &NewHistoryData;
 }
 
 void HistorialMenu::ShowMenuBody() {
@@ -16,21 +24,27 @@ void HistorialMenu::ShowMenuBody() {
     PrintRow();
     PrintText("Presiona 3 para volver al menú principal");
     PrintRow();
-    PrintText("Número de identificación : 001");
-    PrintText("Fecha y Hora de la cotización : 18 / 01 / 2022 15 : 30");
-    PrintText("Código del Vendedor : 001");
-    PrintText("Prenda cotizada : Camisa - Manga corta - Premium Precio unitario : $xx, xx");
-    PrintText("Cantidad de unidades cotizadas : 17");
-    PrintText("Precio Final : $xx, xx");
-    Break();
-    PrintText("Número de identificación : 002");
-    PrintText("Fecha y Hora de la cotización : 20 / 01 / 2022 12 : 10");
-    PrintText("Código del Vendedor : 001");
-    PrintText("Prenda cotizada : Pantalón - Standard Precio unitario : $xx, xx ");
-    PrintText("Cantidad de unidades cotizadas : 8");
-    PrintText("Precio Final : $xx, xx");
-    PrintRow();
-    PrintText("Presiona 3 para volver al menú principal");
+    if (HistoryDataVector != nullptr) {
+        for (int i = 0; i < HistoryDataVector->size(); i++) {
+            ShowHistoryItems(&HistoryDataVector->at(i));
+            Break();
+        }
+    }
+    else if(HistoryData != nullptr){
+        ShowHistoryItems(HistoryData);
+    }
+}
+
+void HistorialMenu::ShowHistoryItems(SHistoryData* HistoryItem) {
+    PrintText("Número de identificación : " + HistoryItem->ID);
+    PrintText("Fecha y Hora de la cotización : " + HistoryItem->Date);
+    PrintText("Código del Vendedor : " + HistoryItem->VendorID);
+    PrintText("Prenda cotizada : " + HistoryItem->PrendaProperties);
+    PrintText("Precio unitario : $", false);
+    cout << fixed << setprecision(2) << HistoryItem->UnitPrice << endl;
+    PrintText("Cantidad de unidades cotizadas : " + to_string(HistoryItem->Quantity));
+    PrintText("Precio Final : $", false);
+    cout << fixed << setprecision(2) << HistoryItem->FinalPrice << endl;
 }
 
 void HistorialMenu::ProcessInputAction() {    

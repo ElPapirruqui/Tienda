@@ -3,11 +3,13 @@
 #include<vector>
 #include "EPrendaType.h"
 
+using namespace std;
+
 class PrendaDecorator;
 
 struct SPrendaData {
 	EPrendaType PrendaType;
-	std::vector<EPrendaType> PrendaProperties;
+	vector<EPrendaType> PrendaProperties;
 	int Count = 0;
 };
 
@@ -16,10 +18,14 @@ public:
 	IPrenda();
 	virtual ~IPrenda();
 	virtual EPrendaType GetType();
+	int GetBasePrice();
 	virtual float GetFinalPrice() = 0;
 	void AddProperty(EPrendaType PrendaProperty);
 	void SetPrice(int NewPrice);
-	std::vector<std::unique_ptr<PrendaDecorator>> Decorators;
+	void SetQuantity(int NewQuantity);
+	string GetPropertiesAsString();
+	vector<unique_ptr<PrendaDecorator>> Decorators;
+	SPrendaData& GetPrendaData();
 protected:
 	float BasePrice = 0;
 	SPrendaData PrendaData;

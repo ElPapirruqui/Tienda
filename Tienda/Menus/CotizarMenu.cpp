@@ -15,7 +15,7 @@ CotizarMenu::~CotizarMenu() {
 void CotizarMenu::ShowMenuBody() {
     PrintText("COTIZADOR EXPRESS - COTIZAR");
     PrintRow();
-    PrintText("Presiona 3 para volver al mend principal");
+    PrintText("Presiona 3 para volver al menu principal");
     PrintRow();
     PrintText("PASO 1: Selecciana la prenda a cotizar : ");
     PrintText("1) Camisa");

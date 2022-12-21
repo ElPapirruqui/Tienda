@@ -5,12 +5,13 @@
 #include "../Menus/CotizarMenu.h"
 #include "../Menus/StepsMenu.h"
 #include "../Presenter/Presenter.h"
+#include "../Menus/ErrorMenu.h"
 #include "View.h"
 
 using namespace std;
 
 View::View() {
-	PresenterUP = std::make_unique<Presenter>();
+	PresenterUP = std::make_unique<Presenter>(this);
 	PresenterPtr = PresenterUP.get();
 }
 
@@ -29,8 +30,7 @@ void View::RenderMenu(EMenu NewMenu) {
 			CurrentMenuPtr = CurrentMenuUP.get();
 		break;
 		case EMenu::History:
-			CurrentMenuUP = std::make_unique<HistorialMenu>(this);
-			CurrentMenuPtr = CurrentMenuUP.get();
+			PresenterPtr->ShowHistoryRecords();
 		break;
 		case EMenu::Cotizar:
 			CurrentMenuUP = std::make_unique<CotizarMenu>(this);
@@ -39,13 +39,27 @@ void View::RenderMenu(EMenu NewMenu) {
 		case EMenu::Steps:
 			CurrentMenuUP = std::make_unique<StepsMenu>(this);
 			CurrentMenuPtr = CurrentMenuUP.get();
+			
 		break;
-		case EMenu::Price:
-			CurrentMenuUP = std::make_unique<StepsMenu>(this);
+		/*case EMenu::Error:
+			CurrentMenuUP = std::make_unique<ErrorMenu>(this);
 			CurrentMenuPtr = CurrentMenuUP.get();
-		break;
+		break;*/
 	}
-	std::system("CLS");
+	CurrentMenuPtr->ShowMenu();
+}
+
+void View::RenderHistoryMenu(SHistoryData& History) {
+	CurrentMenuUP = std::make_unique<HistorialMenu>(this);
+	CurrentMenuPtr = CurrentMenuUP.get();
+	static_cast<HistorialMenu*>(CurrentMenuPtr)->SetHistoryData(History);
+	CurrentMenuPtr->ShowMenu();
+}
+
+void View::RenderHistoryMenu(vector<SHistoryData>& History) {
+	CurrentMenuUP = std::make_unique<HistorialMenu>(this);
+	CurrentMenuPtr = CurrentMenuUP.get();
+	static_cast<HistorialMenu*>(CurrentMenuPtr)->SetHistoryData(History);
 	CurrentMenuPtr->ShowMenu();
 }
 
@@ -57,12 +71,20 @@ std::vector<SPrendaChoice> View::GetCotizacionSteps() {
 	return PresenterPtr->GetCotizacionSteps();
 }
 
+SPrendaChoice View::GetNextStep(int NextStep) {
+	return PresenterPtr->GetNextStep(NextStep);
+}
+
 void View::AddPropertyToCurrentPrenda(EPrendaType PrendaProperty) {
 	PresenterPtr->AddPropertyToCurrentPrenda(PrendaProperty);
 }
 
 void View::SetPriceToCurrentPrenda(int NewPrice) {
 	PresenterPtr->SetPriceToCurrentPrenda(NewPrice);
+}
+
+bool View::SetQuantityToCurrentPrenda(int NewQuantity) {
+	return PresenterPtr->SetQuantityToCurrentPrenda(NewQuantity);
 }
 
 void View::NewHistoryRecord() {

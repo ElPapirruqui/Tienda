@@ -18,7 +18,6 @@ PrendaFactory::~PrendaFactory() {
 
 vector<SPrendaChoice> PrendaFactory::GetCotizacionSteps(EPrendaType PrendaType) {
 	vector<SPrendaChoice> PrendaChoices;
-	string QuantityMessage = "";
 	switch (PrendaType) {
 	case EPrendaType::Camisa:
 		PrendaChoices = {
@@ -37,6 +36,18 @@ vector<SPrendaChoice> PrendaFactory::GetCotizacionSteps(EPrendaType PrendaType) 
 	PrendaChoices.push_back({ "Ingrese el precio unitario de la prenda a cotizar", {}, EStepType::Price});
 	PrendaChoices.push_back({ "Ingrese la cantidad de unidades a cotizar", {}, EStepType::Quantity, "INFORMACION:\nEXISTE X CANTIDAD DE UNIDADES EN STOCK DE LA PRENDA SELECCIONADA" });
 	return PrendaChoices;
+}
+
+SPrendaChoice PrendaFactory::GetCotizacionStep(EPrendaType PrendaType, int NextStep) {
+	SPrendaChoice PrendaStep;
+	vector<SPrendaChoice> PrendaChoices = GetCotizacionSteps(PrendaType);
+	if (NextStep >= PrendaChoices.size()) {
+		PrendaStep.StepType = EStepType::None;
+	}
+	else {
+		PrendaStep = PrendaChoices[NextStep];
+	}
+	return PrendaStep;
 }
 
 void PrendaFactory::SetCurrentPrenda(EPrendaType PrendaType) {
@@ -83,4 +94,12 @@ void PrendaFactory::AddPrendaProperty(EPrendaType PrendaProperty) {
 
 void PrendaFactory::SetNewPrice(int NewPrice) {
 	PrendaPtr->SetPrice(NewPrice);
+}
+
+void PrendaFactory::SetNewQuantity(int NewQuantity) {
+	PrendaPtr->SetQuantity(NewQuantity);
+}
+
+void PrendaFactory::UpdateStepQuantity(SPrendaChoice& CurrentStep, int Quantity) {
+	CurrentStep.Info = "INFORMACION:\nEXISTE " + to_string(Quantity) + " CANTIDAD DE UNIDADES EN STOCK DE LA PRENDA SELECCIONADA";
 }

@@ -25,5 +25,5 @@ float Pantalon::GetFinalPrice() {
 		Price = DecoratorPtr->UpdatePrice(Price);
 		Decorators[i] = std::move(DecoratorUP);
 	}
-	return Price;
+	return Price * PrendaData.Count;
 }

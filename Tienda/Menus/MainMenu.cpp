@@ -36,7 +36,7 @@ void MainMenu::ProcessInputAction() {
             OpenMenu(EMenu::Cotizar);
         break;
         case 3:
-            Exit();
+            Close();
         break;
     }    
 }

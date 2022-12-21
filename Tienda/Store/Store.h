@@ -3,13 +3,25 @@
 #include "../Prendas/EPrendaType.h"
 #include "../Prendas/IPrenda.h"
 #include<vector>
+#include<string>
+
+using namespace std;
+
+struct SHistoryData;
+class History;
 
 class Store {
 public:
 	Store();
 	~Store();
+	SPrendaData* FindPrenda(IPrenda* Prenda);
+	bool CheckStock(int NewQuantity);
+	void UpdateStock(int Quantity);
+	vector<SHistoryData>& GetHistory();
+	SHistoryData& AddToHistory(IPrenda* Prenda, string Date, string VendedorID);
 private:
-	std::vector<SPrendaData> Prendas = {
+	bool CheckEquality(SPrendaData& PrendaDataRef, IPrenda* PrendaPtr);
+	vector<SPrendaData> Prendas = {
 		{EPrendaType::Camisa, {EPrendaType::Camisa, EPrendaType::MangaCorta, EPrendaType::CuelloMao, EPrendaType::Standard}, 100},
 		{EPrendaType::Camisa, {EPrendaType::Camisa, EPrendaType::MangaCorta, EPrendaType::CuelloMao, EPrendaType::Premium}, 100},
 		{EPrendaType::Camisa, {EPrendaType::Camisa, EPrendaType::MangaCorta, EPrendaType::CuelloComun, EPrendaType::Standard}, 150},
@@ -23,4 +35,7 @@ private:
 		{EPrendaType::Pantalon, {EPrendaType::Pantalon, EPrendaType::Clasico, EPrendaType::Standard}, 250},
 		{EPrendaType::Pantalon, {EPrendaType::Pantalon, EPrendaType::Clasico, EPrendaType::Premium}, 250},
 	};
+	SPrendaData* CurrentPrenda;
+	unique_ptr<History> HistoryUP;
+	History* HistoryPtr;
 };
