@@ -1,5 +1,4 @@
 #include<iostream>
-#include "../Prendas/IPrenda.h"
 #include "Vendedor.h"
 #include "History.h"
 #include "Store.h"
@@ -9,17 +8,15 @@ using namespace std;
 Store::Store() {
 	VendedorUP = make_unique<Vendedor>();
 	VendedorPtr = VendedorUP.get();
-	HistoryUP = std::make_unique<History>();
-	HistoryPtr = HistoryUP.get();
 }
 
 Store::~Store() {
 	cout << "Store Destructor" << endl;
 }
 
-SPrendaData* Store::FindPrenda(IPrenda* Prenda) {
+SPrendaData* Store::FindPrenda(SPrendaData& CurrentPrendaData) {
 	for (SPrendaData& PrendaData : Prendas) {
-		if (CheckEquality(PrendaData, Prenda)) {
+		if (CheckEquality(PrendaData, CurrentPrendaData)) {
 			CurrentPrenda = &PrendaData;
 			break;
 		}
@@ -35,25 +32,15 @@ void Store::UpdateStock(int Quantity) {
 	CurrentPrenda->Count -= Quantity;
 }
 
-bool Store::CheckEquality(SPrendaData& PrendaDataRef, IPrenda* PrendaPtr) {
-	SPrendaData& PrendaData = PrendaPtr->GetPrendaData();
+bool Store::CheckEquality(SPrendaData& PrendaDataRef, SPrendaData& CurrentPrendaData) {
 	bool result;
-	if (PrendaDataRef.PrendaProperties.size() >= PrendaData.PrendaProperties.size()) {
-		result = std::equal(PrendaData.PrendaProperties.begin(), PrendaData.PrendaProperties.end(), PrendaDataRef.PrendaProperties.begin());
+	if (PrendaDataRef.PrendaProperties.size() >= CurrentPrendaData.PrendaProperties.size()) {
+		result = std::equal(CurrentPrendaData.PrendaProperties.begin(), CurrentPrendaData.PrendaProperties.end(), PrendaDataRef.PrendaProperties.begin());
 	}
 	else {
-		result = std::equal(PrendaDataRef.PrendaProperties.begin(), PrendaDataRef.PrendaProperties.end(), PrendaData.PrendaProperties.begin());
+		result = std::equal(PrendaDataRef.PrendaProperties.begin(), PrendaDataRef.PrendaProperties.end(), CurrentPrendaData.PrendaProperties.begin());
 	}
 	return result;
-}
-
-vector<SHistoryData>& Store::GetHistory() {
-	return HistoryPtr->GetHistory();
-}
-
-SHistoryData& Store::AddToHistory(IPrenda* Prenda, string Date, string VendedorID) {
-	SHistoryData& LastHistory = HistoryPtr->AddToHistory(Date, VendedorID, Prenda->GetPropertiesAsString(), Prenda->GetBasePrice(), Prenda->GetPrendaData().Count, Prenda->GetFinalPrice());
-	return LastHistory;
 }
 
 string Store::GetName() {

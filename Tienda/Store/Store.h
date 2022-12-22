@@ -7,7 +7,6 @@
 
 using namespace std;
 
-struct SHistoryData;
 class History;
 class Vendedor;
 class Prenda;
@@ -16,18 +15,16 @@ class Store {
 public:
 	Store();
 	~Store();
-	SPrendaData* FindPrenda(IPrenda* Prenda);
+	SPrendaData* FindPrenda(SPrendaData& CurrentPrendaData);
 	bool CheckStock(int NewQuantity);
 	void UpdateStock(int Quantity);
-	vector<SHistoryData>& GetHistory();
-	SHistoryData& AddToHistory(IPrenda* Prenda, string Date, string VendedorID);
 	string GetName();
 	string GetAddress();
 	Vendedor* GetCurrentVendedor();
 private:
 	string Name = "ROPA QUARK";
 	string Address = "Av. Gdor. Quark 3300";
-	bool CheckEquality(SPrendaData& PrendaDataRef, IPrenda* PrendaPtr);
+	bool CheckEquality(SPrendaData& PrendaDataRef, SPrendaData& CurrentPrendaData);
 	vector<SPrendaData> Prendas = {
 		{EPrendaType::Camisa, {EPrendaType::Camisa, EPrendaType::MangaCorta, EPrendaType::CuelloMao, EPrendaType::Standard}, 100},
 		{EPrendaType::Camisa, {EPrendaType::Camisa, EPrendaType::MangaCorta, EPrendaType::CuelloMao, EPrendaType::Premium}, 100},
@@ -43,8 +40,6 @@ private:
 		{EPrendaType::Pantalon, {EPrendaType::Pantalon, EPrendaType::Clasico, EPrendaType::Premium}, 250},
 	};
 	SPrendaData* CurrentPrenda;
-	unique_ptr<History> HistoryUP;
-	History* HistoryPtr;
 	unique_ptr<Vendedor> VendedorUP;
 	Vendedor* VendedorPtr;
 };

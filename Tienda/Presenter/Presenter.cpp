@@ -39,7 +39,7 @@ SPrendaChoice* Presenter::GetNextStep(int NextStep) {
 	PrendaStep = &PrendaFactoryPtr->GetCotizacionStep(Type, NextStep);
 	PrendaStep->Iteration = NextStep;
 	if (PrendaStep->StepType == EStepType::Quantity) {
-		SPrendaData* PrendaData = StorePtr->FindPrenda(CurrentPrenda);
+		SPrendaData* PrendaData = StorePtr->FindPrenda(CurrentPrenda->GetPrendaData());
 		if (PrendaData != nullptr) {
 			PrendaFactoryPtr->UpdateStepQuantity(PrendaStep, PrendaData->Count);
 		}
@@ -156,12 +156,12 @@ bool Presenter::SetQuantityToCurrentPrenda(int NewQuantity) {
 void Presenter::NewHistoryRecord() {
 	IPrenda* CurrentPrenda = PrendaFactoryPtr->GetCurrentPrenda();
 	float NewPrice = CurrentPrenda->GetFinalPrice();
-	SHistoryData& LastHistory = StorePtr->AddToHistory(CurrentPrenda, CurrentDateTime(), StorePtr->GetCurrentVendedor()->GetID());
+	SHistoryData& LastHistory = StorePtr->GetCurrentVendedor()->AddToHistory(CurrentDateTime(), CurrentPrenda->GetPropertiesAsString(), CurrentPrenda->GetBasePrice(), CurrentPrenda->GetPrendaData().Count, CurrentPrenda->GetFinalPrice());
 	RenderHistoryMenu(LastHistory);
 }
 
 void Presenter::ShowHistoryRecords() {
-	vector<SHistoryData>& HistoryRecords = StorePtr->GetHistory();
+	vector<SHistoryData>& HistoryRecords = StorePtr->GetCurrentVendedor()->GetHistory();
 	RenderHistoryMenu(HistoryRecords);
 }
 
