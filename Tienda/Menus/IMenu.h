@@ -14,8 +14,10 @@ public:
 	IMenu(Presenter* NewAppPresenter);
 	virtual ~IMenu();
 	void ShowMenu();
+	void ShowError(string NewError);
 	virtual void ShowMenuBody() = 0;
 	void Close();
+	virtual void UpdateBody() = 0;
 protected:
 	Presenter* AppPresenter;
 	void PrintText(std::string Text, bool bIsEndOfLine = true);
@@ -24,9 +26,10 @@ protected:
 	void GetInput();
 	void ProcessInput();
 	virtual void ProcessInputAction() = 0;
-	virtual void OpenMenu(EMenu NewMenu);
-	virtual void SetNewPrenda(EPrendaType NewPrendaType);
+	virtual void OpenMenu(EMenu NewMenu);	
 	int MenuOption = 0;
 	bool QuitMenu = false;
 	string ErrorMessage;
+	string Title;
+	bool bIsMainMenu = false;
 };

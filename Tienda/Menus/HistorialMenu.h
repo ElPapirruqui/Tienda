@@ -11,9 +11,11 @@ public:
 	HistorialMenu(Presenter* NewAppPresenter);
 	~HistorialMenu();
 	void ShowMenuBody();
-	void ProcessInputAction();
 	void SetHistoryData(SHistoryData& NewHistoryData);
 	void SetHistoryData(vector<SHistoryData>& NewHistoryData);
+	void UpdateBody();
+protected:
+	void ProcessInputAction();
 private:
 	void ShowHistoryItems(SHistoryData* HistoryItem);
 	SHistoryData* HistoryData;

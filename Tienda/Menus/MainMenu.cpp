@@ -5,18 +5,18 @@
 using namespace std;
 
 MainMenu::MainMenu(Presenter* NewAppPresenter):IMenu(NewAppPresenter) {
+    bIsMainMenu = true;
+    Title = "MENU PRINCIPAL";
 }
 
 MainMenu::~MainMenu() {
 	cout << "MainMenu Destructor" << endl;
 }
 
-void MainMenu::ShowMenuBody() {    
-        PrintText("COTIZADOR EXPRESS - MENU PRINCIPAL");
+void MainMenu::ShowMenuBody() { 
+        PrintText(StoreName+" | "+StoreAddress);
         PrintRow();
-        PrintText("Nombre de la tienda | Direccion de la tienda");
-        PrintRow();
-        PrintText("Nombre y Apellido del vendedor | Código del vendedor");
+        PrintText(VendorFullName+" | "+VendorID);
         PrintRow();
         Break();
         PrintText("SELECCIONE UNA OPCION DEL MENU :");
@@ -40,3 +40,12 @@ void MainMenu::ProcessInputAction() {
         break;
     }    
 }
+
+void MainMenu::SetStoreAndVendorInfo(string NewStoreName, string NewStoreAddress, string NewVendorFullName, string NewVendorID) {
+    StoreName = NewStoreName;
+    StoreAddress = NewStoreAddress;
+    VendorFullName = NewVendorFullName;
+    VendorID = NewVendorID;
+}
+
+void MainMenu::UpdateBody() {}

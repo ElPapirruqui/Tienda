@@ -5,7 +5,9 @@
 
 using namespace std;
 
-HistorialMenu::HistorialMenu(Presenter* NewAppPresenter):IMenu(NewAppPresenter){}
+HistorialMenu::HistorialMenu(Presenter* NewAppPresenter):IMenu(NewAppPresenter){
+    Title = "HISTORIAL DE COTIZACIONES";
+}
 
 HistorialMenu::~HistorialMenu() {
     cout << "HistorialMenu Destructor" << endl;
@@ -20,10 +22,6 @@ void HistorialMenu::SetHistoryData(vector<SHistoryData>& NewHistoryData) {
 }
 
 void HistorialMenu::ShowMenuBody() {
-    PrintText("COTIZADOR EXPRESS - HISTORIAL DE COTIZACIONES");
-    PrintRow();
-    PrintText("Presiona 3 para volver al menu principal");
-    PrintRow();
     if (HistoryDataVector != nullptr) {
         for (int i = 0; i < HistoryDataVector->size(); i++) {
             ShowHistoryItems(&HistoryDataVector->at(i));
@@ -55,3 +53,5 @@ void HistorialMenu::ProcessInputAction() {
         break;
     }
 }
+
+void HistorialMenu::UpdateBody() {}

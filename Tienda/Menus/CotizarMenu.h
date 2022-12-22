@@ -7,5 +7,7 @@ public:
 	CotizarMenu(Presenter* NewAppPresenter);
 	~CotizarMenu();
 	void ShowMenuBody();
+	void UpdateBody();
+protected:
 	void ProcessInputAction();
 };

@@ -13,3 +13,7 @@ Vendedor::~Vendedor() {
 string Vendedor::GetID() {
 	return ID;
 }
+
+string Vendedor::GetFullName() {
+	return FullName;
+}

@@ -18,7 +18,7 @@ void IMenu::ShowMenu() {
     while (!QuitMenu)
     {
 		if (AppPresenter == nullptr) {
-			cout << "ERROR" << endl;
+			cout << "Null Presenter. Abort" << endl;
 			return;
 		};
         std::system("CLS");
@@ -30,10 +30,20 @@ void IMenu::ShowMenu() {
 			Break();
 			ErrorMessage = "";
 		}
+		PrintText("COTIZADOR EXPRESS - " + Title);
+		PrintRow();
+		if (!bIsMainMenu) {
+			PrintText("Presiona 3 para volver al menu principal");
+			PrintRow();
+		}
 		ShowMenuBody();
         GetInput();
         ProcessInput();
     }
+}
+
+void IMenu::ShowError(string NewError) {
+	ErrorMessage = NewError;
 }
 
 void IMenu::PrintText(string Text, bool bIsEndOfLine) {
@@ -67,11 +77,6 @@ void IMenu::ProcessInput() {
 void IMenu::OpenMenu(EMenu NewMenu) {
 	MenuOption = 0;
 	AppPresenter->RenderMenu(NewMenu);
-}
-
-void IMenu::SetNewPrenda(EPrendaType NewPrendaType) {
-	MenuOption = 0;
-	AppPresenter->SetNewPrenda(NewPrendaType);
 }
 
 void IMenu::Close() {

@@ -18,10 +18,12 @@ class Presenter {
 public:
 	Presenter();
 	~Presenter();
-	vector<SPrendaChoice> GetCotizacionSteps();
-	SPrendaChoice GetNextStep(int NextStep);
+	vector<SPrendaChoice>& GetCotizacionSteps();
+	SPrendaChoice* GetNextStep(int NextStep);
 	void Start();
 	void RenderMenu(EMenu NewMenu);
+	void RenderMainMenu();
+	void RenderStepsMenu();
 	void RenderHistoryMenu(SHistoryData& History);
 	void RenderHistoryMenu(vector<SHistoryData>& History);
 	void SetNewPrenda(EPrendaType NewPrendaType);
@@ -30,7 +32,9 @@ public:
 	bool SetQuantityToCurrentPrenda(int NewQuantity);
 	void NewHistoryRecord();
 	void ShowHistoryRecords();
+	void ProcessStepChoice(int MenuOption, SPrendaChoice* Step);
 private:
+	void UpdateStepBody(int NextStep);
 	string CurrentDateTime();
 	unique_ptr<Store> StoreUP;
 	Store* StorePtr;

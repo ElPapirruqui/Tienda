@@ -160,7 +160,6 @@
     <ClCompile Include="Store\History.cpp" />
     <ClCompile Include="Store\Store.cpp" />
     <ClCompile Include="Store\Vendedor.cpp" />
-    <ClCompile Include="View\View.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Menus\CotizarMenu.h" />
@@ -185,7 +184,6 @@
     <ClInclude Include="Store\SHistoryData.h" />
     <ClInclude Include="Store\Store.h" />
     <ClInclude Include="Store\Vendedor.h" />
-    <ClInclude Include="View\View.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

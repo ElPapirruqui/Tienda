@@ -6,6 +6,7 @@
 using namespace std;
 
 CotizarMenu::CotizarMenu(Presenter* NewAppPresenter) :IMenu(NewAppPresenter) {
+    Title = "COTIZAR";
 }
 
 CotizarMenu::~CotizarMenu() {
@@ -13,10 +14,6 @@ CotizarMenu::~CotizarMenu() {
 }
 
 void CotizarMenu::ShowMenuBody() {
-    PrintText("COTIZADOR EXPRESS - COTIZAR");
-    PrintRow();
-    PrintText("Presiona 3 para volver al menu principal");
-    PrintRow();
     PrintText("PASO 1: Selecciana la prenda a cotizar : ");
     PrintText("1) Camisa");
     PrintText("2) Pantalon");
@@ -27,15 +24,15 @@ void CotizarMenu::ProcessInputAction() {
     switch (MenuOption)
     {
         case 1:
-            SetNewPrenda(EPrendaType::Camisa);
-            OpenMenu(EMenu::Steps);
+            AppPresenter->SetNewPrenda(EPrendaType::Camisa);
         break;
         case 2:
-            SetNewPrenda(EPrendaType::Pantalon);
-            OpenMenu(EMenu::Steps);
+            AppPresenter->SetNewPrenda(EPrendaType::Pantalon);
         break;
         case 3:
             OpenMenu(EMenu::Main);
         break;
     }
 }
+
+void CotizarMenu::UpdateBody() {}

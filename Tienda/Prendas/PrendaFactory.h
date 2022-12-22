@@ -12,15 +12,17 @@ class PrendaFactory {
 public:
 	PrendaFactory();
 	virtual ~PrendaFactory();
-	vector<SPrendaChoice> GetCotizacionSteps(EPrendaType PrendaType);
-	SPrendaChoice GetCotizacionStep(EPrendaType PrendaType, int NextStep);
+	vector<SPrendaChoice>& GetCotizacionSteps(EPrendaType PrendaType);
+	SPrendaChoice& GetCotizacionStep(EPrendaType PrendaType, int NextStep);
 	IPrenda* GetCurrentPrenda();
+	void ClearChoices();
 	void SetCurrentPrenda(EPrendaType PrendaType);
 	void AddPrendaProperty(EPrendaType PrendaProperty);
 	void SetNewPrice(int NewPrice);
 	void SetNewQuantity(int NewQuantity);
-	void UpdateStepQuantity(SPrendaChoice& CurrentStep, int Quantity);
+	void UpdateStepQuantity(SPrendaChoice* CurrentStep, int Quantity);
 private:
 	unique_ptr<IPrenda> PrendaUP;
 	IPrenda* PrendaPtr;
+	vector<SPrendaChoice> PrendaChoices;
 };

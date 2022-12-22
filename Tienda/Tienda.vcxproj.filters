@@ -27,9 +27,6 @@
     <ClCompile Include="Menus\HistorialMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="View\View.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Presenter\Presenter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -90,9 +87,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Menus\HistorialMenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="View\View.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Presenter\Presenter.h">

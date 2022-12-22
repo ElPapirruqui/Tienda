@@ -19,7 +19,11 @@ public:
 	void UpdateStock(int Quantity);
 	vector<SHistoryData>& GetHistory();
 	SHistoryData& AddToHistory(IPrenda* Prenda, string Date, string VendedorID);
+	string GetName();
+	string GetAddress();
 private:
+	string Name = "ROPA QUARK";
+	string Address = "Av. Gdor. Quark 3300";
 	bool CheckEquality(SPrendaData& PrendaDataRef, IPrenda* PrendaPtr);
 	vector<SPrendaData> Prendas = {
 		{EPrendaType::Camisa, {EPrendaType::Camisa, EPrendaType::MangaCorta, EPrendaType::CuelloMao, EPrendaType::Standard}, 100},

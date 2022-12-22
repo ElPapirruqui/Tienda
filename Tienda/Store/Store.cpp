@@ -52,3 +52,11 @@ SHistoryData& Store::AddToHistory(IPrenda* Prenda, string Date, string VendedorI
 	SHistoryData& LastHistory = HistoryPtr->AddToHistory(Date, VendedorID, Prenda->GetPropertiesAsString(), Prenda->GetBasePrice(), Prenda->GetPrendaData().Count, Prenda->GetFinalPrice());
 	return LastHistory;
 }
+
+string Store::GetName() {
+	return Name;
+}
+
+string Store::GetAddress() {
+	return Address;
+}

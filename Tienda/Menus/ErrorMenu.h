@@ -10,6 +10,8 @@ public:
 	ErrorMenu(Presenter* NewAppPresenter, IMenu* PrevMenu, string ErrorMsg);
 	~ErrorMenu();
 	void ShowMenuBody();
+	void UpdateBody();
+protected: 
 	void ProcessInputAction();
 private:
 	IMenu* PreviousMenu;

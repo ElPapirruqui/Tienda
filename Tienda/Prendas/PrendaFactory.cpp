@@ -16,38 +16,27 @@ PrendaFactory::~PrendaFactory() {
 	cout << "PrendaFactory Destructor" << endl;
 }
 
-vector<SPrendaChoice> PrendaFactory::GetCotizacionSteps(EPrendaType PrendaType) {
-	vector<SPrendaChoice> PrendaChoices;
-	switch (PrendaType) {
-	case EPrendaType::Camisa:
-		PrendaChoices = {
-			{"Tipo de manga de la camisa", {EPrendaType::MangaCorta, EPrendaType::MangaLarga }},
-			{"Tipo de cuello de la camisa", {EPrendaType::CuelloComun, EPrendaType::CuelloMao }},
-			{"Calidad de la camisa", {EPrendaType::Standard, EPrendaType::Premium }}
-		};
-		break;
-	case EPrendaType::Pantalon:
-		PrendaChoices = {
-			{"Tipo de pantalon", {EPrendaType::Chupin, EPrendaType::Clasico }},
-			{"Calidad del pantalon", {EPrendaType::Standard, EPrendaType::Premium }}
-		};
-		break;
+vector<SPrendaChoice>& PrendaFactory::GetCotizacionSteps(EPrendaType PrendaType) {
+	if (PrendaChoices.empty()) {
+		switch (PrendaType) {
+			case EPrendaType::Camisa:
+				PrendaChoices.push_back({ "Tipo de manga de la camisa", {EPrendaType::MangaCorta, EPrendaType::MangaLarga } });
+				PrendaChoices.push_back({ "Tipo de cuello de la camisa", {EPrendaType::CuelloComun, EPrendaType::CuelloMao } });
+				PrendaChoices.push_back({ "Calidad de la camisa", {EPrendaType::Standard, EPrendaType::Premium } });
+			break;
+			case EPrendaType::Pantalon:
+				PrendaChoices.push_back({ "Tipo de pantalon", {EPrendaType::Chupin, EPrendaType::Clasico } });
+				PrendaChoices.push_back({ "Calidad del pantalon", {EPrendaType::Standard, EPrendaType::Premium } });
+			break;
+		}
+		PrendaChoices.push_back({ "Ingrese el precio unitario de la prenda a cotizar", {}, EStepType::Price});
+		PrendaChoices.push_back({ "Ingrese la cantidad de unidades a cotizar", {}, EStepType::Quantity, "" });
 	}
-	PrendaChoices.push_back({ "Ingrese el precio unitario de la prenda a cotizar", {}, EStepType::Price});
-	PrendaChoices.push_back({ "Ingrese la cantidad de unidades a cotizar", {}, EStepType::Quantity, "INFORMACION:\nEXISTE X CANTIDAD DE UNIDADES EN STOCK DE LA PRENDA SELECCIONADA" });
 	return PrendaChoices;
 }
 
-SPrendaChoice PrendaFactory::GetCotizacionStep(EPrendaType PrendaType, int NextStep) {
-	SPrendaChoice PrendaStep;
-	vector<SPrendaChoice> PrendaChoices = GetCotizacionSteps(PrendaType);
-	if (NextStep >= PrendaChoices.size()) {
-		PrendaStep.StepType = EStepType::None;
-	}
-	else {
-		PrendaStep = PrendaChoices[NextStep];
-	}
-	return PrendaStep;
+SPrendaChoice& PrendaFactory::GetCotizacionStep(EPrendaType PrendaType, int NextStep) {
+	return GetCotizacionSteps(PrendaType)[NextStep];
 }
 
 void PrendaFactory::SetCurrentPrenda(EPrendaType PrendaType) {
@@ -65,6 +54,10 @@ void PrendaFactory::SetCurrentPrenda(EPrendaType PrendaType) {
 
 IPrenda* PrendaFactory::GetCurrentPrenda() {
 	return PrendaPtr;
+}
+
+void PrendaFactory::ClearChoices() {
+	PrendaChoices.clear();
 }
 
 void PrendaFactory::AddPrendaProperty(EPrendaType PrendaProperty) {
@@ -100,6 +93,6 @@ void PrendaFactory::SetNewQuantity(int NewQuantity) {
 	PrendaPtr->SetQuantity(NewQuantity);
 }
 
-void PrendaFactory::UpdateStepQuantity(SPrendaChoice& CurrentStep, int Quantity) {
-	CurrentStep.Info = "INFORMACION:\nEXISTE " + to_string(Quantity) + " CANTIDAD DE UNIDADES EN STOCK DE LA PRENDA SELECCIONADA";
+void PrendaFactory::UpdateStepQuantity(SPrendaChoice* CurrentStep, int Quantity) {
+	CurrentStep->Info = "INFORMACION:\nEXISTE " + to_string(Quantity) + " CANTIDAD DE UNIDADES EN STOCK DE LA PRENDA SELECCIONADA";
 }

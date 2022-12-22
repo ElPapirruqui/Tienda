@@ -3,11 +3,14 @@
 #include<string>
 #include<vector>
 
-enum class EStepType { None, Choice, Price, Quantity };
+using namespace std;
+
+enum class EStepType { Choice, Price, Quantity };
 
 struct SPrendaChoice {
-	std::string Message = "";
-	std::vector<EPrendaType> Choices;
+	string Message = "";
+	vector<EPrendaType> Choices;
 	EStepType StepType = EStepType::Choice;
-	std::string Info;
+	string Info;
+	int Iteration = 0;
 };
