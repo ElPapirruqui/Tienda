@@ -22,7 +22,7 @@ void HistorialMenu::SetHistoryData(vector<SHistoryData>& NewHistoryData) {
 void HistorialMenu::ShowMenuBody() {
     PrintText("COTIZADOR EXPRESS - HISTORIAL DE COTIZACIONES");
     PrintRow();
-    PrintText("Presiona 3 para volver al menú principal");
+    PrintText("Presiona 3 para volver al menu principal");
     PrintRow();
     if (HistoryDataVector != nullptr) {
         for (int i = 0; i < HistoryDataVector->size(); i++) {
@@ -36,9 +36,9 @@ void HistorialMenu::ShowMenuBody() {
 }
 
 void HistorialMenu::ShowHistoryItems(SHistoryData* HistoryItem) {
-    PrintText("Número de identificación : " + HistoryItem->ID);
-    PrintText("Fecha y Hora de la cotización : " + HistoryItem->Date);
-    PrintText("Código del Vendedor : " + HistoryItem->VendorID);
+    PrintText("Numero de identificacion : " + HistoryItem->ID);
+    PrintText("Fecha y Hora de la cotizacion : " + HistoryItem->Date);
+    PrintText("Codigo del Vendedor : " + HistoryItem->VendorID);
     PrintText("Prenda cotizada : " + HistoryItem->PrendaProperties);
     PrintText("Precio unitario : $", false);
     cout << fixed << setprecision(2) << HistoryItem->UnitPrice << endl;

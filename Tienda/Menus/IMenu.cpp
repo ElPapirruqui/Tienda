@@ -17,7 +17,10 @@ IMenu::~IMenu() {
 void IMenu::ShowMenu() {
     while (!QuitMenu)
     {
-		if (AppView == nullptr) return;
+		if (AppView == nullptr) {
+			cout << "ERROR" << endl;
+			return;
+		};
         std::system("CLS");
 		if (!ErrorMessage.empty()) {
 			Break();

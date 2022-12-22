@@ -6,6 +6,8 @@
 #include "../Menus/IMenu.h"
 #include "../Store/SHistoryData.h"
 #include <iomanip>
+#include <chrono>
+#include <ctime>
 #include "Presenter.h"
 
 
@@ -27,7 +29,7 @@ Presenter::~Presenter() {
 }
 
 std::vector<SPrendaChoice> Presenter::GetCotizacionSteps() {
-	std::vector<SPrendaChoice> PrendaChoices;
+	vector<SPrendaChoice> PrendaChoices;
 	IPrenda* CurrentPrenda = PrendaFactoryPtr->GetCurrentPrenda();
 	if (CurrentPrenda == nullptr) return PrendaChoices;
 	EPrendaType Type = CurrentPrenda->GetType();
@@ -77,11 +79,21 @@ bool Presenter::SetQuantityToCurrentPrenda(int NewQuantity) {
 void Presenter::NewHistoryRecord() {
 	IPrenda* CurrentPrenda = PrendaFactoryPtr->GetCurrentPrenda();
 	float NewPrice = CurrentPrenda->GetFinalPrice();
-	SHistoryData& LastHistory = StorePtr->AddToHistory(CurrentPrenda, "1" ,VendedorPtr->GetID());
+	SHistoryData& LastHistory = StorePtr->AddToHistory(CurrentPrenda, CurrentDateTime(), VendedorPtr->GetID());
 	ViewPtr->RenderHistoryMenu(LastHistory);
 }
 
 void Presenter::ShowHistoryRecords() {
 	vector<SHistoryData>& HistoryRecords = StorePtr->GetHistory();
 	ViewPtr->RenderHistoryMenu(HistoryRecords);
+}
+
+std::string Presenter::CurrentDateTime() {
+	time_t     now = time(0);
+	struct tm  tstruct;
+	char       buf[80];
+	localtime_s(&tstruct, &now);	
+	strftime(buf, sizeof(buf), "%d/%m/%Y %R", &tstruct);
+
+	return buf;
 }
