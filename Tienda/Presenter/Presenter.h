@@ -18,7 +18,6 @@ class Presenter {
 public:
 	Presenter();
 	~Presenter();
-	vector<SPrendaChoice>& GetCotizacionSteps();
 	SPrendaChoice* GetNextStep(int NextStep);
 	void Start();
 	void RenderMenu(EMenu NewMenu);

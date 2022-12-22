@@ -1,5 +1,6 @@
 #include<iostream>
 #include "Decorators/PrendaDecorator.h"
+#include "../Prendas/SPrendaChoice.h"
 #include "IPrenda.h"
 
 using namespace std;
@@ -50,4 +51,10 @@ SPrendaData& IPrenda::GetPrendaData() {
 
 int IPrenda::GetBasePrice() {
 	return BasePrice;
+}
+
+void IPrenda::AddFinalChoices() {
+	PrendaChoices.push_back({ "Calidad de la prenda", {EPrendaType::Standard, EPrendaType::Premium } });
+	PrendaChoices.push_back({ "Ingrese el precio unitario de la prenda a cotizar", {}, EStepType::Price });
+	PrendaChoices.push_back({ "Ingrese la cantidad de unidades a cotizar", {}, EStepType::Quantity, "" });
 }

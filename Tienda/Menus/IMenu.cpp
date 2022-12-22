@@ -17,7 +17,7 @@ IMenu::~IMenu() {
 void IMenu::ShowMenu() {
     while (!QuitMenu)
     {
-		if (AppPresenter == nullptr) {
+		if (AppPresenter == nullptr || this == nullptr) {
 			cout << "Null Presenter. Abort" << endl;
 			return;
 		};

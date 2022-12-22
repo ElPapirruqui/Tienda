@@ -1,5 +1,6 @@
 #include<iostream>
 #include "Decorators/PrendaDecorator.h"
+#include "../Prendas/SPrendaChoice.h"
 #include "Pantalon.h"
 
 using namespace std;
@@ -7,6 +8,8 @@ using namespace std;
 Pantalon::Pantalon() {
 	PrendaData.PrendaType = EPrendaType::Pantalon;
 	PrendaData.PrendaProperties.push_back(EPrendaType::Pantalon);
+	PrendaChoices.push_back({ "Tipo de pantalon", {EPrendaType::Chupin, EPrendaType::Clasico } });
+	AddFinalChoices();	
 }
 
 Pantalon::~Pantalon() {

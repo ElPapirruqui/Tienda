@@ -16,27 +16,8 @@ PrendaFactory::~PrendaFactory() {
 	cout << "PrendaFactory Destructor" << endl;
 }
 
-vector<SPrendaChoice>& PrendaFactory::GetCotizacionSteps(EPrendaType PrendaType) {
-	if (PrendaChoices.empty()) {
-		switch (PrendaType) {
-			case EPrendaType::Camisa:
-				PrendaChoices.push_back({ "Tipo de manga de la camisa", {EPrendaType::MangaCorta, EPrendaType::MangaLarga } });
-				PrendaChoices.push_back({ "Tipo de cuello de la camisa", {EPrendaType::CuelloComun, EPrendaType::CuelloMao } });
-				PrendaChoices.push_back({ "Calidad de la camisa", {EPrendaType::Standard, EPrendaType::Premium } });
-			break;
-			case EPrendaType::Pantalon:
-				PrendaChoices.push_back({ "Tipo de pantalon", {EPrendaType::Chupin, EPrendaType::Clasico } });
-				PrendaChoices.push_back({ "Calidad del pantalon", {EPrendaType::Standard, EPrendaType::Premium } });
-			break;
-		}
-		PrendaChoices.push_back({ "Ingrese el precio unitario de la prenda a cotizar", {}, EStepType::Price});
-		PrendaChoices.push_back({ "Ingrese la cantidad de unidades a cotizar", {}, EStepType::Quantity, "" });
-	}
-	return PrendaChoices;
-}
-
 SPrendaChoice& PrendaFactory::GetCotizacionStep(EPrendaType PrendaType, int NextStep) {
-	return GetCotizacionSteps(PrendaType)[NextStep];
+	return GetCurrentPrenda()->PrendaChoices[NextStep];
 }
 
 void PrendaFactory::SetCurrentPrenda(EPrendaType PrendaType) {
@@ -54,10 +35,6 @@ void PrendaFactory::SetCurrentPrenda(EPrendaType PrendaType) {
 
 IPrenda* PrendaFactory::GetCurrentPrenda() {
 	return PrendaPtr;
-}
-
-void PrendaFactory::ClearChoices() {
-	PrendaChoices.clear();
 }
 
 void PrendaFactory::AddPrendaProperty(EPrendaType PrendaProperty) {

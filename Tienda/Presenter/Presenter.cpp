@@ -28,14 +28,6 @@ Presenter::~Presenter() {
 	cout << "Presenter Destructor" << endl;
 }
 
-vector<SPrendaChoice>& Presenter::GetCotizacionSteps() {
-	vector<SPrendaChoice> PrendaChoices;
-	IPrenda* CurrentPrenda = PrendaFactoryPtr->GetCurrentPrenda();
-	if (CurrentPrenda == nullptr) return PrendaChoices;
-	EPrendaType Type = CurrentPrenda->GetType();	
-	return PrendaFactoryPtr->GetCotizacionSteps(Type);
-}
-
 SPrendaChoice* Presenter::GetNextStep(int NextStep) {
 	SPrendaChoice* PrendaStep = nullptr;
 	IPrenda* CurrentPrenda = PrendaFactoryPtr->GetCurrentPrenda();
@@ -57,7 +49,6 @@ void Presenter::Start() {
 }
 
 void Presenter::RenderMenu(EMenu NewMenu) {
-	if(PrendaFactoryPtr != nullptr) PrendaFactoryPtr->ClearChoices();
 	if(CurrentMenuPtr != nullptr) CurrentMenuPtr->Close();
 	switch (NewMenu) {
 		case EMenu::Main:
@@ -161,7 +152,6 @@ bool Presenter::SetQuantityToCurrentPrenda(int NewQuantity) {
 
 void Presenter::NewHistoryRecord() {
 	IPrenda* CurrentPrenda = PrendaFactoryPtr->GetCurrentPrenda();
-	PrendaFactoryPtr->ClearChoices();
 	float NewPrice = CurrentPrenda->GetFinalPrice();
 	SHistoryData& LastHistory = StorePtr->AddToHistory(CurrentPrenda, CurrentDateTime(), StorePtr->GetCurrentVendedor()->GetID());
 	RenderHistoryMenu(LastHistory);

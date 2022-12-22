@@ -6,6 +6,8 @@
 using namespace std;
 
 class PrendaDecorator;
+enum class EStepType;
+struct SPrendaChoice;
 
 struct SPrendaData {
 	EPrendaType PrendaType;
@@ -24,9 +26,11 @@ public:
 	void SetPrice(int NewPrice);
 	void SetQuantity(int NewQuantity);
 	string GetPropertiesAsString();
+	vector<SPrendaChoice> PrendaChoices;
 	vector<unique_ptr<PrendaDecorator>> Decorators;
 	SPrendaData& GetPrendaData();
 protected:
 	float BasePrice = 0;
 	SPrendaData PrendaData;
+	void AddFinalChoices();
 };
