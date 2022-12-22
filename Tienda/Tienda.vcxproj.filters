@@ -48,7 +48,7 @@
     <ClCompile Include="Prendas\PrendaFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Prendas\EPrendaType.cpp">
+    <ClCompile Include="Enum\EPrendaType.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Menus\StepsMenu.cpp">
@@ -107,10 +107,10 @@
     <ClInclude Include="Store\Store.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Prendas\SPrendaChoice.h">
+    <ClInclude Include="Structs\SPrendaChoice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Prendas\EPrendaType.h">
+    <ClInclude Include="Enum\EPrendaType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Prendas\PrendaFactory.h">
@@ -144,6 +144,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Store\SHistoryData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Enum\EMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Structs\SPrendaData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Enum\EStepType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

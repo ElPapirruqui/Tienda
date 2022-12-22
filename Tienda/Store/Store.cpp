@@ -1,4 +1,5 @@
 #include<iostream>
+#include "../Prendas/IPrenda.h"
 #include "Vendedor.h"
 #include "History.h"
 #include "Store.h"

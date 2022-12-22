@@ -1,9 +1,8 @@
 #pragma once
 #include "IMenu.h"
-#include "../Prendas/SPrendaChoice.h"
 #include<vector>
 
-//struct SPrendaChoice;
+struct SPrendaChoice;
 
 class StepsMenu : public IMenu {
 public:

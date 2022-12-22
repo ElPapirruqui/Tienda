@@ -1,5 +1,6 @@
 #include<iostream>
-#include "../Prendas/EPrendaType.h"
+#include "../Enum/EPrendaType.h"
+#include "../Enum/EMenu.h"
 #include "../Presenter/Presenter.h"
 #include "CotizarMenu.h"
 

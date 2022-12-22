@@ -1,7 +1,7 @@
 #pragma once
-#include "../Prendas/SPrendaChoice.h"
-#include "../Prendas/EPrendaType.h"
-#include "../Prendas/IPrenda.h"
+#include "../Structs/SPrendaChoice.h"
+#include "../Enum/EPrendaType.h"
+#include "../Structs/SPrendaData.h"
 #include<vector>
 #include<string>
 
@@ -10,6 +10,7 @@ using namespace std;
 struct SHistoryData;
 class History;
 class Vendedor;
+class Prenda;
 
 class Store {
 public:

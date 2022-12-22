@@ -6,6 +6,8 @@
 #include "../Prendas/Decorators/MangaCorta.h"
 #include "../Prendas/Decorators/CuelloMao.h"
 #include "../Prendas/Decorators/Premium.h"
+#include "../Enum/EPrendaType.h"
+#include "../Structs/SPrendaChoice.h"
 #include "PrendaFactory.h"
 
 using namespace std;

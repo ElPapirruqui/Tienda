@@ -7,6 +7,9 @@
 #include "../Menus/CotizarMenu.h"
 #include "../Menus/StepsMenu.h"
 #include "../Store/SHistoryData.h"
+#include "../Enum/EMenu.h"
+#include "../Enum/EStepType.h"
+#include "../Prendas/IPrenda.h"
 #include<iostream>
 #include <iomanip>
 #include <chrono>

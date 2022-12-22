@@ -4,7 +4,7 @@
 using namespace std;
 
 enum class EPrendaType;
-enum class EMenu { Main, History, Cotizar, Steps, Error};
+enum class EMenu;
 
 class Presenter;
 

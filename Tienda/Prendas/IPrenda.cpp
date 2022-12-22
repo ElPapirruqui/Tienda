@@ -1,6 +1,8 @@
 #include<iostream>
 #include "Decorators/PrendaDecorator.h"
-#include "../Prendas/SPrendaChoice.h"
+#include "../Structs/SPrendaChoice.h"
+#include "../Enum/EPrendaType.h"
+#include "../Enum/EStepType.h"
 #include "IPrenda.h"
 
 using namespace std;

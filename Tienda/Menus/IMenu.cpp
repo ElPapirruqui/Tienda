@@ -1,4 +1,3 @@
-#include "../Prendas/EPrendaType.h"
 #include "../Presenter/Presenter.h"
 #include "IMenu.h"
 #include<iostream>

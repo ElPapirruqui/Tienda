@@ -1,19 +1,14 @@
 #pragma once
+#include "../Structs/SPrendaData.h"
 #include<string>
 #include<vector>
-#include "EPrendaType.h"
 
 using namespace std;
 
 class PrendaDecorator;
-enum class EStepType;
+enum class EPrendaType;
 struct SPrendaChoice;
-
-struct SPrendaData {
-	EPrendaType PrendaType;
-	vector<EPrendaType> PrendaProperties;
-	int Count = 0;
-};
+struct SPrendaData;
 
 class IPrenda {
 public:

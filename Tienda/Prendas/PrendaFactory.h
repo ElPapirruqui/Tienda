@@ -1,12 +1,12 @@
 #pragma once
-#include "../Prendas/SPrendaChoice.h"
-#include "../Prendas/EPrendaType.h"
 #include<vector>
 #include<memory>
 
 using namespace std;
 
 class IPrenda;
+enum class EPrendaType;
+struct SPrendaChoice;
 
 class PrendaFactory {
 public:

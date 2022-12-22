@@ -152,7 +152,7 @@
     <ClCompile Include="Prendas\Decorators\MangaCorta.cpp" />
     <ClCompile Include="Prendas\Decorators\Premium.cpp" />
     <ClCompile Include="Prendas\Decorators\PrendaDecorator.cpp" />
-    <ClCompile Include="Prendas\EPrendaType.cpp" />
+    <ClCompile Include="Enum\EPrendaType.cpp" />
     <ClCompile Include="Prendas\Pantalon.cpp" />
     <ClCompile Include="Prendas\IPrenda.cpp" />
     <ClCompile Include="Prendas\PrendaFactory.cpp" />
@@ -162,6 +162,8 @@
     <ClCompile Include="Store\Vendedor.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Enum\EMenu.h" />
+    <ClInclude Include="Enum\EStepType.h" />
     <ClInclude Include="Menus\CotizarMenu.h" />
     <ClInclude Include="Menus\ErrorMenu.h" />
     <ClInclude Include="Menus\HistorialMenu.h" />
@@ -174,16 +176,17 @@
     <ClInclude Include="Prendas\Decorators\MangaCorta.h" />
     <ClInclude Include="Prendas\Decorators\Premium.h" />
     <ClInclude Include="Prendas\Decorators\PrendaDecorator.h" />
-    <ClInclude Include="Prendas\EPrendaType.h" />
+    <ClInclude Include="Enum\EPrendaType.h" />
     <ClInclude Include="Prendas\IPrenda.h" />
     <ClInclude Include="Prendas\Pantalon.h" />
     <ClInclude Include="Prendas\PrendaFactory.h" />
-    <ClInclude Include="Prendas\SPrendaChoice.h" />
+    <ClInclude Include="Structs\SPrendaChoice.h" />
     <ClInclude Include="Presenter\Presenter.h" />
     <ClInclude Include="Store\History.h" />
     <ClInclude Include="Store\SHistoryData.h" />
     <ClInclude Include="Store\Store.h" />
     <ClInclude Include="Store\Vendedor.h" />
+    <ClInclude Include="Structs\SPrendaData.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

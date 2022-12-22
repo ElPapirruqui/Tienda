@@ -1,6 +1,8 @@
 #include<iostream>
 #include "../Presenter/Presenter.h"
-
+#include "../Structs/SPrendaChoice.h"
+#include "../Enum/EPrendaType.h"
+#include "../Enum/EMenu.h"
 #include "StepsMenu.h"
 #include<string>
 #include <limits>

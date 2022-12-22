@@ -1,5 +1,6 @@
 #include<iostream>
 #include "../Presenter/Presenter.h"
+#include "../Enum/EMenu.h"
 #include "HistorialMenu.h"
 #include <iomanip>
 
