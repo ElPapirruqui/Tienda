@@ -6,7 +6,6 @@
 using namespace std;
 
 ErrorMenu::ErrorMenu(Presenter* NewAppPresenter, IMenu* PrevMenu, string ErrorMsg) :IMenu(NewAppPresenter), PreviousMenu(PrevMenu), ErrorMessage(ErrorMsg) {
-    QuitMenu = false;
     Title = "ERROR";
 }
 

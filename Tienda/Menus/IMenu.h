@@ -28,7 +28,7 @@ protected:
 	virtual void ProcessInputAction() = 0;
 	virtual void OpenMenu(EMenu NewMenu);	
 	int MenuOption = 0;
-	bool QuitMenu = true;
+	bool QuitMenu = false;
 	string ErrorMessage;
 	string Title;
 	bool bIsMainMenu = false;

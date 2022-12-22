@@ -1,6 +1,7 @@
 #include<iostream>
 #include "Decorators/PrendaDecorator.h"
-#include "../Prendas/SPrendaChoice.h"
+#include "../Enum/EPrendaType.h"
+#include "../Structs/SPrendaChoice.h"
 #include "Pantalon.h"
 
 using namespace std;

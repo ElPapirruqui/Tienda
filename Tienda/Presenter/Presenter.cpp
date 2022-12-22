@@ -120,6 +120,7 @@ void Presenter::ProcessStepChoice(int MenuOption, SPrendaChoice* Step) {
 	case EStepType::Quantity:
 		bool bIsAvailable = SetQuantityToCurrentPrenda(MenuOption);
 		if (bIsAvailable) {
+			CurrentMenuPtr->Close();
 			NewHistoryRecord();
 		}
 		else {

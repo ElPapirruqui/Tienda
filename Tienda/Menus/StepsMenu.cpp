@@ -10,7 +10,6 @@
 using namespace std;
 
 StepsMenu::StepsMenu(Presenter* AppPresenter) :IMenu(AppPresenter) {
-    QuitMenu = false;
     Title = "COTIZAR";
 }
 
