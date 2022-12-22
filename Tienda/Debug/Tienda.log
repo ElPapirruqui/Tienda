@@ -1,2 +1,6 @@
-﻿  Store.cpp
+﻿  Presenter.cpp
+E:\proyectos\QUARK\Tienda\Tienda\Tienda\Presenter\Presenter.cpp(111,36): warning C4018: '<=': signed/unsigned mismatch
+  History.cpp
+  Store.cpp
+  Generating Code...
   Tienda.vcxproj -> E:\proyectos\QUARK\Tienda\Tienda\Debug\Tienda.exe

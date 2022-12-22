@@ -1,6 +1,6 @@
 #pragma once
 #include "IMenu.h"
-#include "../Store/SHistoryData.h"
+#include "../Structs/SHistoryData.h"
 #include<vector>
 
 using namespace std;

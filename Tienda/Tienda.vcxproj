@@ -183,7 +183,7 @@
     <ClInclude Include="Structs\SPrendaChoice.h" />
     <ClInclude Include="Presenter\Presenter.h" />
     <ClInclude Include="Store\History.h" />
-    <ClInclude Include="Store\SHistoryData.h" />
+    <ClInclude Include="Structs\SHistoryData.h" />
     <ClInclude Include="Store\Store.h" />
     <ClInclude Include="Store\Vendedor.h" />
     <ClInclude Include="Structs\SPrendaData.h" />

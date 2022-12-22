@@ -1,5 +1,5 @@
 #pragma once
-#include "SHistoryData.h"
+#include "../Structs/SHistoryData.h"
 #include<vector>
 #include<string>
 
