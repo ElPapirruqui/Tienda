@@ -4,7 +4,7 @@
 class MainMenu : public IMenu {
 public:
 	int ID = 4;
-	MainMenu(View* NewAppView);
+	MainMenu(Presenter* NewAppPresenter);
 	~MainMenu();
 	void ShowMenuBody();
 	void ProcessInputAction();

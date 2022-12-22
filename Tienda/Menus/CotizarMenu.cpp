@@ -1,11 +1,11 @@
 #include<iostream>
 #include "../Prendas/EPrendaType.h"
-#include "../View/View.h"
+#include "../Presenter/Presenter.h"
 #include "CotizarMenu.h"
 
 using namespace std;
 
-CotizarMenu::CotizarMenu(View* NewAppView) :IMenu(NewAppView) {
+CotizarMenu::CotizarMenu(Presenter* NewAppPresenter) :IMenu(NewAppPresenter) {
 }
 
 CotizarMenu::~CotizarMenu() {

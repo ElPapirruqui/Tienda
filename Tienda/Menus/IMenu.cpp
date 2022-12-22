@@ -1,11 +1,11 @@
 #include "../Prendas/EPrendaType.h"
-#include "../View/View.h"
+#include "../Presenter/Presenter.h"
 #include "IMenu.h"
 #include<iostream>
 
 using namespace std;
 
-IMenu::IMenu(View* NewAppView):AppView(NewAppView) {
+IMenu::IMenu(Presenter* NewAppPresenter):AppPresenter(NewAppPresenter) {
 
 }
 
@@ -17,7 +17,7 @@ IMenu::~IMenu() {
 void IMenu::ShowMenu() {
     while (!QuitMenu)
     {
-		if (AppView == nullptr) {
+		if (AppPresenter == nullptr) {
 			cout << "ERROR" << endl;
 			return;
 		};
@@ -66,12 +66,12 @@ void IMenu::ProcessInput() {
 
 void IMenu::OpenMenu(EMenu NewMenu) {
 	MenuOption = 0;
-	AppView->RenderMenu(NewMenu);
+	AppPresenter->RenderMenu(NewMenu);
 }
 
 void IMenu::SetNewPrenda(EPrendaType NewPrendaType) {
 	MenuOption = 0;
-	AppView->SetNewPrenda(NewPrendaType);
+	AppPresenter->SetNewPrenda(NewPrendaType);
 }
 
 void IMenu::Close() {

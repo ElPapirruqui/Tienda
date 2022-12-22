@@ -1,11 +1,11 @@
 #include<iostream>
-#include "../View/View.h"
+#include "../Presenter/Presenter.h"
 #include "HistorialMenu.h"
 #include <iomanip>
 
 using namespace std;
 
-HistorialMenu::HistorialMenu(View* NewAppView):IMenu(NewAppView){}
+HistorialMenu::HistorialMenu(Presenter* NewAppPresenter):IMenu(NewAppPresenter){}
 
 HistorialMenu::~HistorialMenu() {
     cout << "HistorialMenu Destructor" << endl;

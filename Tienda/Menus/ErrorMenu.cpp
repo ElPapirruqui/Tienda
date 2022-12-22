@@ -1,10 +1,10 @@
 #include<iostream>
-#include "../View/View.h"
+#include "../Presenter/Presenter.h"
 #include "ErrorMenu.h"
 
 using namespace std;
 
-ErrorMenu::ErrorMenu(View* NewAppView, IMenu* PrevMenu, string ErrorMsg) :IMenu(NewAppView), PreviousMenu(PrevMenu), ErrorMessage(ErrorMsg) {}
+ErrorMenu::ErrorMenu(Presenter* NewAppPresenter, IMenu* PrevMenu, string ErrorMsg) :IMenu(NewAppPresenter), PreviousMenu(PrevMenu), ErrorMessage(ErrorMsg) {}
 
 ErrorMenu::~ErrorMenu() {
     cout << "ErrorMenu Destructor" << endl;

@@ -8,7 +8,7 @@ using namespace std;
 class HistorialMenu : public IMenu {
 public:
 	int ID = 3;
-	HistorialMenu(View* NewAppView);
+	HistorialMenu(Presenter* NewAppPresenter);
 	~HistorialMenu();
 	void ShowMenuBody();
 	void ProcessInputAction();

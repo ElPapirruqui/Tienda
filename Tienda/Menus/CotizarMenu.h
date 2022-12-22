@@ -4,7 +4,7 @@
 class CotizarMenu : public IMenu {
 public:
 	int ID = 1;
-	CotizarMenu(View* NewAppView);
+	CotizarMenu(Presenter* NewAppPresenter);
 	~CotizarMenu();
 	void ShowMenuBody();
 	void ProcessInputAction();

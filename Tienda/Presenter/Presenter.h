@@ -1,22 +1,29 @@
 #pragma once
+#include<memory>
 #include<vector>
-#include "../Prendas/SPrendaChoice.h"
-#include "../Prendas/EPrendaType.h"
+#include<string>
 
 using namespace std;
 
+class IMenu;
 class Vendedor;
 class Store;
 class PrendaFactory;
-class View;
+enum class EMenu;
+enum class EPrendaType;
+struct SPrendaChoice;
+struct SHistoryData;
 
 class Presenter {
 public:
 	Presenter();
-	Presenter(View* NewView);
 	~Presenter();
 	vector<SPrendaChoice> GetCotizacionSteps();
 	SPrendaChoice GetNextStep(int NextStep);
+	void Start();
+	void RenderMenu(EMenu NewMenu);
+	void RenderHistoryMenu(SHistoryData& History);
+	void RenderHistoryMenu(vector<SHistoryData>& History);
 	void SetNewPrenda(EPrendaType NewPrendaType);
 	void AddPropertyToCurrentPrenda(EPrendaType PrendaProperty);
 	void SetPriceToCurrentPrenda(int NewPrice);
@@ -31,5 +38,6 @@ private:
 	PrendaFactory* PrendaFactoryPtr;
 	unique_ptr<Vendedor> VendedorUP;
 	Vendedor* VendedorPtr;
-	View* ViewPtr;
+	unique_ptr<IMenu> CurrentMenuUP;
+	IMenu* CurrentMenuPtr;
 };

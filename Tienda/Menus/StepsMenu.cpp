@@ -1,5 +1,5 @@
 #include<iostream>
-#include "../View/View.h"
+#include "../Presenter/Presenter.h"
 
 #include "StepsMenu.h"
 #include<string>
@@ -7,8 +7,8 @@
 
 using namespace std;
 
-StepsMenu::StepsMenu(View* NewAppView) :IMenu(NewAppView) {
-    Step = AppView->GetNextStep(CurrentStep);
+StepsMenu::StepsMenu(Presenter* AppPresenter) :IMenu(AppPresenter) {
+    Step = AppPresenter->GetNextStep(CurrentStep);
 }
 
 StepsMenu::~StepsMenu() {
@@ -49,19 +49,19 @@ void StepsMenu::ProcessInputAction() {
                 case EStepType::Choice:
                     if (MenuOption > 0 && MenuOption <= CurrentChoices.size()) {
                         CurrentStep++;
-                        AppView->AddPropertyToCurrentPrenda(CurrentChoices[MenuOption - 1]);
-                        Step = AppView->GetNextStep(CurrentStep);
+                        AppPresenter->AddPropertyToCurrentPrenda(CurrentChoices[MenuOption - 1]);
+                        Step = AppPresenter->GetNextStep(CurrentStep);
                     }
                 break;
                 case EStepType::Price:
                     CurrentStep++;
-                    AppView->SetPriceToCurrentPrenda(MenuOption);
-                    Step = AppView->GetNextStep(CurrentStep);
+                    AppPresenter->SetPriceToCurrentPrenda(MenuOption);
+                    Step = AppPresenter->GetNextStep(CurrentStep);
                 break;
                 case EStepType::Quantity:
-                    bool bIsAvailable = AppView->SetQuantityToCurrentPrenda(MenuOption);
+                    bool bIsAvailable = AppPresenter->SetQuantityToCurrentPrenda(MenuOption);
                     if (bIsAvailable) {
-                        AppView->NewHistoryRecord();
+                        AppPresenter->NewHistoryRecord();
                     }
                     else {
                         ErrorMessage = "La cantidad seleccionada es mayor a la disponible en stock.";

@@ -1,10 +1,13 @@
-#include<iostream>
 #include "../Prendas/PrendaFactory.h"
 #include "../Store/Store.h"
 #include "../Store/Vendedor.h"
-#include "../View/View.h"
 #include "../Menus/IMenu.h"
+#include "../Menus/MainMenu.h"
+#include "../Menus//HistorialMenu.h"
+#include "../Menus/CotizarMenu.h"
+#include "../Menus/StepsMenu.h"
 #include "../Store/SHistoryData.h"
+#include<iostream>
 #include <iomanip>
 #include <chrono>
 #include <ctime>
@@ -13,9 +16,7 @@
 
 using namespace std;
 
-Presenter::Presenter() {}
-
-Presenter::Presenter(View* NewView):ViewPtr(NewView) {
+Presenter::Presenter() {
 	StoreUP = std::make_unique<Store>();
 	StorePtr = StoreUP.get();
 	PrendaFactoryUP = std::make_unique<PrendaFactory>();
@@ -52,6 +53,46 @@ SPrendaChoice Presenter::GetNextStep(int NextStep) {
 	return PrendaStep;
 }
 
+void Presenter::Start() {
+	RenderMenu(EMenu::Main);
+}
+
+void Presenter::RenderMenu(EMenu NewMenu) {
+	switch (NewMenu) {
+	case EMenu::Main:
+		CurrentMenuUP = std::make_unique<MainMenu>(this);
+		CurrentMenuPtr = CurrentMenuUP.get();
+		break;
+	case EMenu::History:
+		ShowHistoryRecords();
+		break;
+	case EMenu::Cotizar:
+		CurrentMenuUP = std::make_unique<CotizarMenu>(this);
+		CurrentMenuPtr = CurrentMenuUP.get();
+		break;
+	case EMenu::Steps:
+		CurrentMenuUP = std::make_unique<StepsMenu>(this);
+		CurrentMenuPtr = CurrentMenuUP.get();
+
+		break;
+	}
+	CurrentMenuPtr->ShowMenu();
+}
+
+void Presenter::RenderHistoryMenu(SHistoryData& History) {
+	CurrentMenuUP = std::make_unique<HistorialMenu>(this);
+	CurrentMenuPtr = CurrentMenuUP.get();
+	static_cast<HistorialMenu*>(CurrentMenuPtr)->SetHistoryData(History);
+	CurrentMenuPtr->ShowMenu();
+}
+
+void Presenter::RenderHistoryMenu(vector<SHistoryData>& History) {
+	CurrentMenuUP = std::make_unique<HistorialMenu>(this);
+	CurrentMenuPtr = CurrentMenuUP.get();
+	static_cast<HistorialMenu*>(CurrentMenuPtr)->SetHistoryData(History);
+	CurrentMenuPtr->ShowMenu();
+}
+
 void Presenter::SetNewPrenda(EPrendaType NewPrendaType) {
 	PrendaFactoryPtr->SetCurrentPrenda(NewPrendaType);
 }
@@ -80,15 +121,15 @@ void Presenter::NewHistoryRecord() {
 	IPrenda* CurrentPrenda = PrendaFactoryPtr->GetCurrentPrenda();
 	float NewPrice = CurrentPrenda->GetFinalPrice();
 	SHistoryData& LastHistory = StorePtr->AddToHistory(CurrentPrenda, CurrentDateTime(), VendedorPtr->GetID());
-	ViewPtr->RenderHistoryMenu(LastHistory);
+	RenderHistoryMenu(LastHistory);
 }
 
 void Presenter::ShowHistoryRecords() {
 	vector<SHistoryData>& HistoryRecords = StorePtr->GetHistory();
-	ViewPtr->RenderHistoryMenu(HistoryRecords);
+	RenderHistoryMenu(HistoryRecords);
 }
 
-std::string Presenter::CurrentDateTime() {
+string Presenter::CurrentDateTime() {
 	time_t     now = time(0);
 	struct tm  tstruct;
 	char       buf[80];

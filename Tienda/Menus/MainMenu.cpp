@@ -1,10 +1,10 @@
 #include<iostream>
-#include "../View/View.h"
+#include "../Presenter/Presenter.h"
 #include "MainMenu.h"
 
 using namespace std;
 
-MainMenu::MainMenu(View* NewAppView):IMenu(NewAppView) {
+MainMenu::MainMenu(Presenter* NewAppPresenter):IMenu(NewAppPresenter) {
 }
 
 MainMenu::~MainMenu() {

@@ -8,7 +8,7 @@
 class StepsMenu : public IMenu {
 public:
 	int ID = 5;
-	StepsMenu(View* NewAppView);
+	StepsMenu(Presenter* NewAppView);
 	~StepsMenu();
 	void ShowMenuBody();
 protected:

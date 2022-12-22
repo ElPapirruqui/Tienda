@@ -2,6 +2,9 @@
 #include "../Prendas/SPrendaChoice.h"
 #include "../Prendas/EPrendaType.h"
 #include<vector>
+#include<memory>
+
+using namespace std;
 
 class IPrenda;
 
@@ -9,7 +12,7 @@ class PrendaFactory {
 public:
 	PrendaFactory();
 	virtual ~PrendaFactory();
-	std::vector<SPrendaChoice> GetCotizacionSteps(EPrendaType PrendaType);
+	vector<SPrendaChoice> GetCotizacionSteps(EPrendaType PrendaType);
 	SPrendaChoice GetCotizacionStep(EPrendaType PrendaType, int NextStep);
 	IPrenda* GetCurrentPrenda();
 	void SetCurrentPrenda(EPrendaType PrendaType);
@@ -18,6 +21,6 @@ public:
 	void SetNewQuantity(int NewQuantity);
 	void UpdateStepQuantity(SPrendaChoice& CurrentStep, int Quantity);
 private:
-	std::unique_ptr<IPrenda> PrendaUP;
+	unique_ptr<IPrenda> PrendaUP;
 	IPrenda* PrendaPtr;
 };
