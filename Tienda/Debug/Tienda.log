@@ -1,4 +1,2 @@
-﻿  Presenter.cpp
-E:\proyectos\QUARK\Tienda\Tienda\Tienda\Presenter\Presenter.cpp(118,36): warning C4018: '<=': signed/unsigned mismatch
-E:\proyectos\QUARK\Tienda\Tienda\Tienda\Presenter\Presenter.cpp(35): warning C4172: returning address of local variable or temporary: PrendaChoices
+﻿  IMenu.cpp
   Tienda.vcxproj -> E:\proyectos\QUARK\Tienda\Tienda\Debug\Tienda.exe

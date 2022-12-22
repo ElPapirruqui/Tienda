@@ -9,6 +9,7 @@ using namespace std;
 
 struct SHistoryData;
 class History;
+class Vendedor;
 
 class Store {
 public:
@@ -21,6 +22,7 @@ public:
 	SHistoryData& AddToHistory(IPrenda* Prenda, string Date, string VendedorID);
 	string GetName();
 	string GetAddress();
+	Vendedor* GetCurrentVendedor();
 private:
 	string Name = "ROPA QUARK";
 	string Address = "Av. Gdor. Quark 3300";
@@ -42,4 +44,6 @@ private:
 	SPrendaData* CurrentPrenda;
 	unique_ptr<History> HistoryUP;
 	History* HistoryPtr;
+	unique_ptr<Vendedor> VendedorUP;
+	Vendedor* VendedorPtr;
 };

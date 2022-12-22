@@ -6,6 +6,8 @@
 using namespace std;
 
 Store::Store() {
+	VendedorUP = make_unique<Vendedor>();
+	VendedorPtr = VendedorUP.get();
 	HistoryUP = std::make_unique<History>();
 	HistoryPtr = HistoryUP.get();
 }
@@ -59,4 +61,8 @@ string Store::GetName() {
 
 string Store::GetAddress() {
 	return Address;
+}
+
+Vendedor* Store::GetCurrentVendedor() {
+	return VendedorPtr;
 }

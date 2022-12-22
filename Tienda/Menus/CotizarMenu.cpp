@@ -6,6 +6,7 @@
 using namespace std;
 
 CotizarMenu::CotizarMenu(Presenter* NewAppPresenter) :IMenu(NewAppPresenter) {
+    QuitMenu = false;
     Title = "COTIZAR";
 }
 

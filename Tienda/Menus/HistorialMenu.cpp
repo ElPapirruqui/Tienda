@@ -6,6 +6,7 @@
 using namespace std;
 
 HistorialMenu::HistorialMenu(Presenter* NewAppPresenter):IMenu(NewAppPresenter){
+    QuitMenu = false;
     Title = "HISTORIAL DE COTIZACIONES";
 }
 

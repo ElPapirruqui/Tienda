@@ -5,6 +5,7 @@
 using namespace std;
 
 MainMenu::MainMenu(Presenter* NewAppPresenter):IMenu(NewAppPresenter) {
+    QuitMenu = false;
     bIsMainMenu = true;
     Title = "MENU PRINCIPAL";
 }

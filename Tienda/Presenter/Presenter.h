@@ -39,9 +39,7 @@ private:
 	unique_ptr<Store> StoreUP;
 	Store* StorePtr;
 	unique_ptr<PrendaFactory> PrendaFactoryUP;
-	PrendaFactory* PrendaFactoryPtr;
-	unique_ptr<Vendedor> VendedorUP;
-	Vendedor* VendedorPtr;
+	PrendaFactory* PrendaFactoryPtr;	
 	unique_ptr<IMenu> CurrentMenuUP;
 	IMenu* CurrentMenuPtr;
 };

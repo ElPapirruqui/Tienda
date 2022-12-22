@@ -21,8 +21,7 @@ Presenter::Presenter() {
 	StorePtr = StoreUP.get();
 	PrendaFactoryUP = make_unique<PrendaFactory>();
 	PrendaFactoryPtr = PrendaFactoryUP.get();
-	VendedorUP = make_unique<Vendedor>();
-	VendedorPtr = VendedorUP.get();
+	
 }
 
 Presenter::~Presenter() {
@@ -81,7 +80,7 @@ void Presenter::RenderMenu(EMenu NewMenu) {
 void Presenter::RenderMainMenu() {
 	CurrentMenuUP = make_unique<MainMenu>(this);
 	CurrentMenuPtr = CurrentMenuUP.get();
-	static_cast<MainMenu*>(CurrentMenuPtr)->SetStoreAndVendorInfo(StorePtr->GetName(), StorePtr->GetAddress(), VendedorPtr->GetFullName(), VendedorPtr->GetID());
+	static_cast<MainMenu*>(CurrentMenuPtr)->SetStoreAndVendorInfo(StorePtr->GetName(), StorePtr->GetAddress(), StorePtr->GetCurrentVendedor()->GetFullName(), StorePtr->GetCurrentVendedor()->GetID());
 	CurrentMenuPtr->ShowMenu();
 }
 
@@ -164,7 +163,7 @@ void Presenter::NewHistoryRecord() {
 	IPrenda* CurrentPrenda = PrendaFactoryPtr->GetCurrentPrenda();
 	PrendaFactoryPtr->ClearChoices();
 	float NewPrice = CurrentPrenda->GetFinalPrice();
-	SHistoryData& LastHistory = StorePtr->AddToHistory(CurrentPrenda, CurrentDateTime(), VendedorPtr->GetID());
+	SHistoryData& LastHistory = StorePtr->AddToHistory(CurrentPrenda, CurrentDateTime(), StorePtr->GetCurrentVendedor()->GetID());
 	RenderHistoryMenu(LastHistory);
 }
 

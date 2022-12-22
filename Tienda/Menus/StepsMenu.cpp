@@ -8,7 +8,7 @@
 using namespace std;
 
 StepsMenu::StepsMenu(Presenter* AppPresenter) :IMenu(AppPresenter) {
-    //Step = AppPresenter->GetNextStep(CurrentStep);
+    QuitMenu = false;
     Title = "COTIZAR";
 }
 
