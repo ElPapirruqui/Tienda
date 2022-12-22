@@ -1,11 +1,6 @@
-﻿  CotizarMenu.cpp
-  ErrorMenu.cpp
-  HistorialMenu.cpp
-E:\proyectos\QUARK\Tienda\Tienda\Tienda\Menus\HistorialMenu.cpp(27,27): warning C4018: '<': signed/unsigned mismatch
-  IMenu.cpp
-  MainMenu.cpp
-  StepsMenu.cpp
-  Presenter.cpp
-E:\proyectos\QUARK\Tienda\Tienda\Tienda\Presenter\Presenter.cpp(111,36): warning C4018: '<=': signed/unsigned mismatch
+﻿  Presenter.cpp
+E:\proyectos\QUARK\Tienda\Tienda\Tienda\Presenter\Presenter.cpp(112,36): warning C4018: '<=': signed/unsigned mismatch
+  History.cpp
+  Vendedor.cpp
   Generating Code...
   Tienda.vcxproj -> E:\proyectos\QUARK\Tienda\Tienda\Debug\Tienda.exe

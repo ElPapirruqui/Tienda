@@ -53,7 +53,7 @@ void IMenu::PrintText(string Text, bool bIsEndOfLine) {
 }
 
 void IMenu::Break() {
-	cout << "\n" << endl;
+	cout << "" << endl;
 }
 
 void IMenu::PrintRow() {

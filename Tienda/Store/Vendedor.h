@@ -13,8 +13,7 @@ public:
 	~Vendedor();
 	string GetID();
 	string GetFullName();
-	vector<SHistoryData>& GetHistory();
-	SHistoryData& AddToHistory(string Date, string PrendaProperties, int UnitPrice, int Quantity, float FinalPrice);
+	History* GetHistory();
 private:
 	unique_ptr<History> HistoryUP;
 	History* HistoryPtr;

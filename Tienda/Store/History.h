@@ -11,7 +11,7 @@ class History {
 public:
 	History();
 	~History();
-    vector<SHistoryData>& GetHistory();
+    vector<SHistoryData>& GetHistoryData();
     SHistoryData& AddToHistory(string Date, string VendorID, string PrendaProperties, int UnitPrice, int Quantity, float FinalPrice);
 private:
     int ID = 0;

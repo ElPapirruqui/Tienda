@@ -10,7 +10,7 @@ History::~History() {
 	cout << "History Destructor" << endl;
 }
 
-vector<SHistoryData>& History::GetHistory() {
+vector<SHistoryData>& History::GetHistoryData() {
 	return HistoryData;
 }
 

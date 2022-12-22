@@ -22,11 +22,6 @@ string Vendedor::GetFullName() {
 	return FullName;
 }
 
-vector<SHistoryData>& Vendedor::GetHistory() {
-	return HistoryPtr->GetHistory();
-}
-
-SHistoryData& Vendedor::AddToHistory(string Date, string PrendaProperties, int UnitPrice, int Quantity, float FinalPrice) {
-	SHistoryData& LastHistory = HistoryPtr->AddToHistory(Date, ID, PrendaProperties, UnitPrice, Quantity, FinalPrice);
-	return LastHistory;
+History* Vendedor::GetHistory() {
+	return HistoryPtr;
 }

@@ -1,6 +1,7 @@
 #include "../Prendas/PrendaFactory.h"
 #include "../Store/Store.h"
 #include "../Store/Vendedor.h"
+#include "../Store/History.h"
 #include "../Menus/IMenu.h"
 #include "../Menus/MainMenu.h"
 #include "../Menus//HistorialMenu.h"
@@ -157,12 +158,16 @@ bool Presenter::SetQuantityToCurrentPrenda(int NewQuantity) {
 void Presenter::NewHistoryRecord() {
 	IPrenda* CurrentPrenda = PrendaFactoryPtr->GetCurrentPrenda();
 	float NewPrice = CurrentPrenda->GetFinalPrice();
-	SHistoryData& LastHistory = StorePtr->GetCurrentVendedor()->AddToHistory(CurrentDateTime(), CurrentPrenda->GetPropertiesAsString(), CurrentPrenda->GetBasePrice(), CurrentPrenda->GetPrendaData().Count, CurrentPrenda->GetFinalPrice());
+	Vendedor* Vendedor = StorePtr->GetCurrentVendedor();
+	History* History = Vendedor->GetHistory();
+	SHistoryData& LastHistory = History->AddToHistory(CurrentDateTime(), Vendedor->GetID(), CurrentPrenda->GetPropertiesAsString(), CurrentPrenda->GetBasePrice(), CurrentPrenda->GetPrendaData().Count, CurrentPrenda->GetFinalPrice());
 	RenderHistoryMenu(LastHistory);
 }
 
 void Presenter::ShowHistoryRecords() {
-	vector<SHistoryData>& HistoryRecords = StorePtr->GetCurrentVendedor()->GetHistory();
+	Vendedor* Vendedor = StorePtr->GetCurrentVendedor();
+	History* History = Vendedor->GetHistory();
+	vector<SHistoryData>& HistoryRecords = History->GetHistoryData();
 	RenderHistoryMenu(HistoryRecords);
 }
 
