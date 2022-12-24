@@ -21,13 +21,13 @@ void IMenu::ShowMenu() {
 			return;
 		};
         std::system("CLS");
-		if (!ErrorMessage.empty()) {
+		if (bShowError) {
 			Break();
 			PrintRow();
 			PrintText("ERROR: " + ErrorMessage);
 			PrintRow();
 			Break();
-			ErrorMessage = "";
+			bShowError = false;
 		}
 		PrintText("COTIZADOR EXPRESS - " + Title);
 		PrintRow();
@@ -41,8 +41,12 @@ void IMenu::ShowMenu() {
     }
 }
 
-void IMenu::ShowError(string NewError) {
+void IMenu::SetError(string NewError) {
 	ErrorMessage = NewError;
+}
+
+void IMenu::ShowError() {
+	bShowError = true;
 }
 
 void IMenu::PrintText(string Text, bool bIsEndOfLine) {
@@ -65,12 +69,14 @@ void IMenu::GetInput() {
 }
 
 void IMenu::ProcessInput() {
-	if (!std::cin.good()) {
+	if (!std::cin.good() || !IsNumber(MenuOption)) {
 		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		ShowError();
 		return;
 	};
 	ProcessInputAction();
+	MenuOption = 0;
 }
 
 void IMenu::OpenMenu(EMenu NewMenu) {
@@ -80,4 +86,13 @@ void IMenu::OpenMenu(EMenu NewMenu) {
 
 void IMenu::Close() {
 	QuitMenu = true;
+}
+
+bool IMenu::IsNumber(int Number) {
+	string StrNumber = to_string(MenuOption);
+	auto LenghtOne = strspn(StrNumber.c_str(), "0123456789");
+	auto LenghtTwo = StrNumber.length();
+	bool Result = LenghtOne == LenghtTwo;
+
+	return Result;
 }

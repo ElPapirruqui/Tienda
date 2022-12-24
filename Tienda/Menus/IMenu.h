@@ -14,7 +14,8 @@ public:
 	IMenu(Presenter* NewAppPresenter);
 	virtual ~IMenu();
 	void ShowMenu();
-	void ShowError(string NewError);
+	void SetError(string NewError);
+	void ShowError();
 	virtual void ShowMenuBody() = 0;
 	void Close();
 	virtual void UpdateBody() = 0;
@@ -25,11 +26,13 @@ protected:
 	void PrintRow();
 	void GetInput();
 	void ProcessInput();
+	bool IsNumber(int Number);
 	virtual void ProcessInputAction() = 0;
 	virtual void OpenMenu(EMenu NewMenu);	
 	int MenuOption = 0;
 	bool QuitMenu = false;
 	string ErrorMessage;
+	bool bShowError = false;
 	string Title;
 	bool bIsMainMenu = false;
 };

@@ -9,8 +9,8 @@ using namespace std;
 Camisa::Camisa() {
 	PrendaData.PrendaType = EPrendaType::Camisa;
 	PrendaData.PrendaProperties.push_back(EPrendaType::Camisa);	
-	PrendaChoices.push_back({ "Tipo de manga de la camisa", {EPrendaType::MangaCorta, EPrendaType::MangaLarga } });
-	PrendaChoices.push_back({ "Tipo de cuello de la camisa", {EPrendaType::CuelloComun, EPrendaType::CuelloMao } });
+	PrendaChoices.push_back({ "Tipo de manga de la camisa", "Seleccione una opcion valida", {EPrendaType::MangaCorta, EPrendaType::MangaLarga }});
+	PrendaChoices.push_back({ "Tipo de cuello de la camisa", "Seleccione una opcion valida", {EPrendaType::CuelloComun, EPrendaType::CuelloMao } });
 	AddFinalChoices();
 }
 

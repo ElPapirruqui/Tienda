@@ -9,7 +9,7 @@ using namespace std;
 Pantalon::Pantalon() {
 	PrendaData.PrendaType = EPrendaType::Pantalon;
 	PrendaData.PrendaProperties.push_back(EPrendaType::Pantalon);
-	PrendaChoices.push_back({ "Tipo de pantalon", {EPrendaType::Chupin, EPrendaType::Clasico } });
+	PrendaChoices.push_back({ "Tipo de pantalon", "Seleccione una opcion valida", {EPrendaType::Chupin, EPrendaType::Clasico } });
 	AddFinalChoices();	
 }
 

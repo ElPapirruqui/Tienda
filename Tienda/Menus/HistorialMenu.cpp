@@ -7,6 +7,7 @@
 using namespace std;
 
 HistorialMenu::HistorialMenu(Presenter* NewAppPresenter):IMenu(NewAppPresenter){
+    ErrorMessage = "Seleccione una opcion valida";
     Title = "HISTORIAL DE COTIZACIONES";
 }
 
@@ -51,6 +52,9 @@ void HistorialMenu::ProcessInputAction() {
     {
         case 3:
             OpenMenu(EMenu::Main);
+        break;
+        default:
+            ShowError();
         break;
     }
 }

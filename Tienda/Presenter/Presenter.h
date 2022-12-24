@@ -41,4 +41,6 @@ private:
 	PrendaFactory* PrendaFactoryPtr;	
 	unique_ptr<IMenu> CurrentMenuUP;
 	IMenu* CurrentMenuPtr;
+	template <class _Ty>
+	void CreateMenu();
 };

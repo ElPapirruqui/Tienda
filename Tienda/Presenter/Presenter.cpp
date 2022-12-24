@@ -62,8 +62,7 @@ void Presenter::RenderMenu(EMenu NewMenu) {
 			ShowHistoryRecords();
 		break;
 		case EMenu::Cotizar:
-			CurrentMenuUP = make_unique<CotizarMenu>(this);
-			CurrentMenuPtr = CurrentMenuUP.get();
+			CreateMenu<CotizarMenu>();
 			CurrentMenuPtr->ShowMenu();
 		break;
 		case EMenu::Steps:
@@ -73,29 +72,25 @@ void Presenter::RenderMenu(EMenu NewMenu) {
 }
 
 void Presenter::RenderMainMenu() {
-	CurrentMenuUP = make_unique<MainMenu>(this);
-	CurrentMenuPtr = CurrentMenuUP.get();
+	CreateMenu<MainMenu>();
 	static_cast<MainMenu*>(CurrentMenuPtr)->SetStoreAndVendorInfo(StorePtr->GetName(), StorePtr->GetAddress(), StorePtr->GetCurrentVendedor()->GetFullName(), StorePtr->GetCurrentVendedor()->GetID());
 	CurrentMenuPtr->ShowMenu();
 }
 
 void Presenter::RenderStepsMenu() {
-	CurrentMenuUP = make_unique<StepsMenu>(this);
-	CurrentMenuPtr = CurrentMenuUP.get();
+	CreateMenu<StepsMenu>();
 	UpdateStepBody(0);
 	CurrentMenuPtr->ShowMenu();
 }
 
 void Presenter::RenderHistoryMenu(SHistoryData& History) {
-	CurrentMenuUP = make_unique<HistorialMenu>(this);
-	CurrentMenuPtr = CurrentMenuUP.get();
+	CreateMenu<HistorialMenu>();
 	static_cast<HistorialMenu*>(CurrentMenuPtr)->SetHistoryData(History);
 	CurrentMenuPtr->ShowMenu();
 }
 
 void Presenter::RenderHistoryMenu(vector<SHistoryData>& History) {
-	CurrentMenuUP = make_unique<HistorialMenu>(this);
-	CurrentMenuPtr = CurrentMenuUP.get();
+	CreateMenu<HistorialMenu>();
 	static_cast<HistorialMenu*>(CurrentMenuPtr)->SetHistoryData(History);
 	CurrentMenuPtr->ShowMenu();
 }
@@ -113,6 +108,9 @@ void Presenter::ProcessStepChoice(int MenuOption, SPrendaChoice* Step) {
 			AddPropertyToCurrentPrenda(CurrentChoices[MenuOption - 1]);
 			UpdateStepBody(Step->Iteration + 1);
 		}
+		else {
+			CurrentMenuPtr->ShowError();
+		}
 		break;
 	case EStepType::Price:
 		SetPriceToCurrentPrenda(MenuOption);
@@ -125,7 +123,8 @@ void Presenter::ProcessStepChoice(int MenuOption, SPrendaChoice* Step) {
 			NewHistoryRecord();
 		}
 		else {
-			CurrentMenuPtr->ShowError("La cantidad seleccionada es mayor a la disponible en stock.");
+			CurrentMenuPtr->SetError("La cantidad seleccionada es mayor a la disponible en stock.");
+			CurrentMenuPtr->ShowError();
 		}
 		break;
 	}
@@ -179,4 +178,12 @@ string Presenter::CurrentDateTime() {
 	strftime(buf, sizeof(buf), "%d/%m/%Y %R", &tstruct);
 
 	return buf;
+}
+
+template <class _Ty>
+void Presenter::CreateMenu() {
+	CurrentMenuUP.release();
+	delete CurrentMenuPtr;
+	CurrentMenuUP = make_unique<_Ty>(this);
+	CurrentMenuPtr = CurrentMenuUP.get();
 }

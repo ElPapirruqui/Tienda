@@ -8,6 +8,7 @@ using namespace std;
 MainMenu::MainMenu(Presenter* NewAppPresenter):IMenu(NewAppPresenter) {
     bIsMainMenu = true;
     Title = "MENU PRINCIPAL";
+    ErrorMessage = "Seleccione una opcion valida";
 }
 
 MainMenu::~MainMenu() {
@@ -38,6 +39,9 @@ void MainMenu::ProcessInputAction() {
         break;
         case 3:
             Close();
+        break;
+        default:
+            ShowError();
         break;
     }    
 }

@@ -7,6 +7,7 @@
 using namespace std;
 
 CotizarMenu::CotizarMenu(Presenter* NewAppPresenter) :IMenu(NewAppPresenter) {
+    ErrorMessage = "Seleccione una opcion valida";
     Title = "COTIZAR";
 }
 
@@ -32,6 +33,9 @@ void CotizarMenu::ProcessInputAction() {
         break;
         case 3:
             OpenMenu(EMenu::Main);
+        break;
+        default:
+            ShowError();
         break;
     }
 }

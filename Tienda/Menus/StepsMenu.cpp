@@ -18,6 +18,7 @@ StepsMenu::~StepsMenu() {
 }
 
 void StepsMenu::ShowMenuBody() {
+    SetError(Step->Error);
     if (!Step->Info.empty()) {
         Break();
         PrintText(Step->Info);
